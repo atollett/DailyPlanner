@@ -11,6 +11,8 @@ body {
     color: #000000;
     border-left: 1px solid black;
     padding: 10px;
+
+    
   }
   
   .jumbotron {
@@ -68,5 +70,16 @@ body {
   .saveBtn i:hover {
     font-size: 20px;
     transition: all .3s ease-in-out;
+  }
+
+  .saveIcon {
+    background-color: darkturquoise;
+    color: linen;
+    border-radius: 0px 15px 15px 0px;
+    /* float: right; */
+    font-size: 1.5em;
+    width: 100%;
+    height: 100%;
+    text-align: center;
   }
   

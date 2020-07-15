@@ -3,11 +3,9 @@ $(document).ready(function() {
     var now = moment().format('MMMM Do YYYY');
 
     var nowHour24 = moment().format('H');
-    var nowHour12 = moment().format('h');
+    //var nowHour12 = moment().format('h');
 
     $("#currentDay").append(now);
-    
-    var saveIcon = ".assets/save.png";
 
     planTextArr = new Array(9);
 
@@ -72,7 +70,7 @@ $(document).ready(function() {
 
         var $saveBtn = $('<i>');
         $saveBtn.attr('id',`saveid-${index}`);
-        $saveBtn.attr('save-id',index);
+        $saveBtn.attr('save-id', index);
         $saveBtn.attr('class',"far fa-save saveIcon");
     
         // add col width and row component to row
@@ -89,11 +87,11 @@ $(document).ready(function() {
 //updates color depending on time
 function updateRowColor($hourRow, hour) {
     if ( hour < nowHour24) {
-        $hourRow.css("background-color","lightgrey")
+        $hourRow.css("background-color","lightgrey");
     } else if ( hour > nowHour24) {
-        $hourRow.css("background-color","lightgreen")
+        $hourRow.css("background-color","lightgreen");
     } else {
-        $hourRow.css("background-color","tomato")
+        $hourRow.css("background-color","tomato");
     }
 }
 
