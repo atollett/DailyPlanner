@@ -7,17 +7,7 @@ $(document).ready(function() {
 
     $("#currentDay").append(now);
     
-    //add save icon to assets
-    var saveIcon = ".assets/save-image.jpg";
-
-    //var storedPlans = JSON.parse(localStorage.getItem("plans"));
-
-    // if (storedPlans !== null) {
-    //     planTextArr = storedPlans;
-    // } else {
-    //     planTextArr = new Array(9);
-    //     planTextArr[4] = "Go outside!";
-    // }
+    var saveIcon = ".assets/save.png";
 
     planTextArr = new Array(9);
 
@@ -25,7 +15,7 @@ $(document).ready(function() {
     $plannerDiv.empty();
 
     for(var hour = 9; hour <= 17; ++hour) {
-        //var index = hour - 9;
+        //index for array use
         var index = hour;
         var $rowDiv = $("<div>");
         $rowDiv.addClass("row plannerRow");
@@ -38,6 +28,7 @@ $(document).ready(function() {
         var $timeBoxSpn = $("<span>");
         $timeBoxSpn.attr("class","timeBox");
     
+        //format hours
         var displayHour = 0;
         var ampm = "";
         if (hour > 12) { 
@@ -48,13 +39,15 @@ $(document).ready(function() {
             ampm = "am";
         }
     
+        //populate timebox with time
         $timeBoxSpn.text(`${displayHour} ${ampm}`);
 
+        // insert into col inset into timebox
         $rowDiv.append($col2TimeDiv);
         $col2TimeDiv.append($timeBoxSpn);
 
         //input portion of row
-
+        //build row components
         var $dailyPlanSpn = $('<input>');
 
         $dailyPlanSpn.attr('id',`input-${index}`);
@@ -62,15 +55,18 @@ $(document).ready(function() {
         $dailyPlanSpn.attr('type','text');
         $dailyPlanSpn.attr('class','dailyPlan');
 
+        // access index from data array for hour
         $dailyPlanSpn.val( planTextArr[index] );
     
+        // create col to control width
         var $col9IptDiv = $('<div>');
         $col9IptDiv.addClass('col-md-9 description');
 
+        // add col width and row component to row
         $rowDiv.append($col9IptDiv);
         $col9IptDiv.append($dailyPlanSpn);
 
-        // START building save portion of row
+        // save portion of row
         var $col1SaveDiv = $('<div>');
         $col1SaveDiv.addClass('col-md-1');
 
@@ -82,7 +78,6 @@ $(document).ready(function() {
         // add col width and row component to row
         $rowDiv.append($col1SaveDiv);
         $col1SaveDiv.append($saveBtn);
-        // STOP building save portion of row
 
         // set row color based on time
         updateRowColor($rowDiv, hour);
@@ -91,6 +86,7 @@ $(document).ready(function() {
         $plannerDiv.append($rowDiv);
   };
 
+//updates color depending on time
 function updateRowColor($hourRow, hour) {
     if ( hour < nowHour24) {
         $hourRow.css("background-color","lightgrey")
@@ -101,22 +97,17 @@ function updateRowColor($hourRow, hour) {
     }
 }
 
+//takes input and pushes it to local storage
 $(".saveIcon").on("click", function(){
-    // console.log($(this).parent().parent().attr("hour-index"));
-    // console.log($(this).parent().siblings(".col-md-9").children().val());
-
     var time = $(this).parent().parent().attr("hour-index");
     var content = $(this).parent().siblings(".col-md-9").children().val();
 
     localStorage.setItem(time, content);
-
-
 });  
 
+//takes output from local storage and appends to planner
 for(var i = 9; i <= 17; ++i) {
     $("#input-" + i).val(localStorage.getItem(i));
-    //$("#input-10").val(localStorage.getItem("10")); 
-
 }
 
 });
