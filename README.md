@@ -10,4 +10,4 @@ Clicking on the save button stores the time and user input in localStorage. Near
 
 https://atollett.github.io/DailyPlanner/
 
-![Image of Planner](Assets/planner.PNG)
+![Image of Planner](assets/planner.PNG)
